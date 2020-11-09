@@ -5,15 +5,12 @@ Created on Wed Jul 10 12:38:16 2019
 @author: danie
 """
 
-import os
-
 from kisters.network_store.model_library.water import links, nodes
 from kisters.network_store.client.network import Network
 from kisters.water.rest_client import RESTClient
 from kisters.water.rest_client.auth import OpenIDConnect
 
 
-GIS_dir = os.path.abspath(r"GIS")
 rest_server_url = "https://hdsr-detol-network.water.kisters.cloud/"
 
 
