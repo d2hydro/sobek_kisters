@@ -22,13 +22,6 @@ authentication = OpenIDConnect(
 client = RESTClient(url=rest_server_url, authentication=authentication)
 network = Network("sobek-test1", client, drop_existing=True)
 
-#%% build network
-
-# model = sobek.sobek(r"c:\SK215003\net_stor.lit")
-
-
-#%% upload network
-
 
 channel = links.Channel(
     created="2019-06-27T16:53:05",
