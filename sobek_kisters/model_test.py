@@ -37,8 +37,8 @@ channel = links.Channel(
                 "roughness": 10.0,
                 "distance": 0.0,
                 "cross_section": [
-                    {"z": 0.0, "lr": -5.0},
                     {"z": 10.0, "lr": -5.0},
+                    {"z": 0.0, "lr": -5.0},
                     {"z": 0.0, "lr": 5.0},
                     {"z": 10.0, "lr": 5.0},
                 ],
