@@ -5,17 +5,12 @@ Created on Wed Jul 10 12:38:16 2019
 @author: danie
 """
 
-import os
-
 from kisters.network_store.model_library.water import links, nodes
 from kisters.network_store.client.network import Network
 from kisters.water.rest_client import RESTClient
 from kisters.water.rest_client.auth import OpenIDConnect
 
-
-GIS_dir = os.path.abspath(r"GIS")
 rest_server_url = "https://hdsr-detol-network.water.kisters.cloud/"
-
 
 authentication = OpenIDConnect(
     client_id="hdsr-detol.operational.external.0D2EDE59",
@@ -23,16 +18,12 @@ authentication = OpenIDConnect(
 )
 
 client = RESTClient(url=rest_server_url, authentication=authentication)
-network = Network("sobek-test1", client, drop_existing=True)
-
-#%% build network
-
-# model = sobek.sobek(r"c:\SK215003\net_stor.lit")
+network = Network("de_tol", client, drop_existing=True)
 
 
 #%% upload network
 
-
+#example link
 channel = links.Channel(
     created="2019-06-27T16:53:05",
     uid="channel",
@@ -41,13 +32,13 @@ channel = links.Channel(
     display_name="channel",
     hydraulic_routing={
         "model": "saint-venant",
-        "roughness_model": "chezy",
+        "roughness_model": "chezy",         #chezy/manning
         "stations": [
             {
-                "roughness": 10.0,
-                "distance": 0.0,
+                "roughness": 10.0,          #manning
+                "distance": 0.0,            #afstand tov eerste vertice
                 "cross_section": [
-                    {"z": 0.0, "lr": -5.0},
+                    {"z": 0.0, "lr": -5.0}, #hier mag de yz definitie in
                     {"z": 10.0, "lr": -5.0},
                     {"z": 0.0, "lr": 5.0},
                     {"z": 10.0, "lr": 5.0},
