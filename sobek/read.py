@@ -14,6 +14,7 @@ import numpy as np
 import hkvsobekpy as his
 import csv
 
+#%%
 def __between(value, a, b):
     # Find and validate before-part.
     pos_a = value.find(a)
@@ -51,7 +52,32 @@ __friction_models = {'0': 'chezy',
 __flow_boundary_types = {'0': 'waterlevel',
                          '1': 'discharge'}
 
+__structure_types = {'6': 'weir',
+                     '7': 'orifice',
+                     '9': 'pump'}
+
+__structure_flow_dirs = {'0': 'both',
+                         '1': 'positive',
+                         '2': 'negative',
+                         '3': 'no_flow'}
+
+__pump_control = {'1':'suction',
+                '2':'delivery',
+                '3':'both_sides'}
+
+__control_types = {'0': 'time',
+                   '1': 'hydraulic',
+                   '2': 'interval',
+                   '3': 'PID'}
+
+__control_param = {'0': 'crest_level',
+                   '1': 'crest_width',
+                   '2': 'gate_height',
+                   '3': 'pump_capacity'}
+
 __profile_types = {}
+
+__match_num = '[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?'
 
 #%% read network
 def network(path,crs):
@@ -93,7 +119,7 @@ def network(path,crs):
             links.at[index,'geometry'] = LineString(coord_list)
 
     network = {}
-    objects = gpd.GeoDataFrame(columns=['ID','TYPE','geometry'],geometry='geometry',crs=crs)
+    objects = gpd.GeoDataFrame(columns=['ID','TYPE','LINK','LINK_POS','geometry'],geometry='geometry',crs=crs)
     objects_list = []
     with open(os.path.join(path,'network.ntw'),'r') as networkNTW:
         doLinks = True
@@ -108,10 +134,10 @@ def network(path,crs):
                         'lineString':[[float(l[21]),float(l[22])],[float(l[34]),float(l[35])]]}})
                     if not l[14] in objects_list:
                         objects_list.append(l[14])
-                        objects = objects.append({'ID':l[14],'TYPE':l[19],'geometry':Point([float(l[21]),float(l[22])])}, ignore_index=True)
+                        objects = objects.append({'ID':l[14],'NAME':l[15],'TYPE':l[19],'geometry':Point([float(l[21]),float(l[22])])}, ignore_index=True)
                     if not l[27] in objects_list:
                         objects_list.append(l[27]) 
-                        objects = objects.append({'ID':l[27],'TYPE':l[32],'geometry':Point([float(l[34]),float(l[35])])}, ignore_index=True)
+                        objects = objects.append({'ID':l[27],'NAME':l[28],'TYPE':l[32],'geometry':Point([float(l[34]),float(l[35])])}, ignore_index=True)
 
     h_points = gpd.GeoDataFrame(columns=['ID','geometry'],geometry='geometry',crs=crs)
     v_links = gpd.GeoDataFrame(columns=['ID','TYPE','CUSTOM_TYPE','FROM_NODE','TO_NODE','geometry'],geometry='geometry',crs=crs)
@@ -140,6 +166,33 @@ def network(path,crs):
                         v_links = v_links.append({'ID':v_point,'TYPE':Type,'CUSTOM_TYPE':customType,'FROM_NODE':pointFrom,'TO_NODE':pointTo,'geometry':LineString(segment)}, ignore_index=True)
                         v_point = grid[4].replace("'","")
                         pointFrom = h_point
+    
+    #use ID as index
+    for df in [links,nodes,objects,v_links]:
+        df.index = df['ID']
+    
+    with open(os.path.join(path,'network.cr'),'r') as networkCR:
+        for line in networkCR:
+            if re.match("CRSN",line):
+                object_id = re.search(".id '(.*)' nm.",line).group(1)
+                objects.loc[object_id, 'LINK'] = re.search(".ci '(.*)' lc",line).group(1)
+                objects.loc[object_id, 'LINK_POS'] = float(re.search(".lc (.*) crsn",line).group(1))
+
+    with open(os.path.join(path,'network.st'),'r') as networkST:
+        for line in networkST:
+            if re.match("STRU",line):
+                object_id = re.search(".id '(.*)' nm.",line).group(1)
+                objects.loc[object_id, 'LINK'] = re.search(".ci '(.*)' lc",line).group(1)
+                objects.loc[object_id, 'LINK_POS'] = float(re.search(".lc (.*) stru",line).group(1))
+                
+    with open(os.path.join(path,'network.cn'),'r') as networkCN:
+        for line in networkCN:
+            if re.match("FLBX",line):
+                object_id = re.search(".id '(.*)' nm.",line).group(1)
+                objects.loc[object_id, 'LINK'] = re.search(".ci '(.*)' lc",line).group(1)
+                objects.loc[object_id, 'LINK_POS'] = float(re.search(".lc (.*) flbx",line).group(1))
+
+
     return {'links':links.set_crs(crs,inplace=True),
             'nodes':nodes.set_crs(crs,inplace=True),
             'objects':objects.set_crs(crs,inplace=True),
@@ -169,8 +222,117 @@ def parameters(path):
                 value = float(__between(line, 'mt cp 0','0 mr').replace(' ',''))
                 result['friction']['global'] = {'model':model,
                                                 'value':value}
+    
+    with path.joinpath('struct.dat').open() as struct_dat:
+        structures = dict()
+        for line in struct_dat:
+            if re.match("STRU",line):
+                struc_id = re.search(".id '(.*)' nm.",line).group(1)
+                structures[struc_id] = {}
+                structures[struc_id]['def_id'] = re.search(".dd '(.*)' ca.",line).group(1)
+                structures[struc_id]['control_id'] = re.search("cj '(.*)' ",line).group(1) 
+                structures[struc_id]['control_active'] = bool(int(re.search(f'ca ({__match_num}) ' ,line).group(1)))
+        result['structures'] = structures
+                
+    with path.joinpath('struct.def').open() as struct_def:
+        for stds in struct_def.read().split('stds'):
+            if 'STDS' in stds:
+                def_id = re.search(".id '(.*)' nm.",stds).group(1) 
+                struc_def = dict()
+                struc_def['type'] = __structure_types[re.search(".ty ([0-9]).",stds).group(1)]
+                if struc_def['type'] in ['weir','orifice']:
+                    struc_def['crest_level'] = float(re.search(f".cl ({__match_num}).",stds).group(1))
+                    struc_def['crest_width'] = float(re.search(f".cw ({__match_num}).",stds).group(1))
+                    struc_def['flow_dir'] = __structure_flow_dirs[re.search(f".rt ({__match_num}).",stds).group(1)]
+                    if struc_def['type'] == 'weir':
+                        cw = float(re.search(f".sc ({__match_num}).",stds).group(1))
+                        ce = float(re.search(f".ce ({__match_num}).",stds).group(1))
+                        struc_def['coefficient'] = ce * cw
+                        
+                    if struc_def['type'] == 'orifice':
+                        cw = float(re.search(f".sc ({__match_num}).",stds).group(1))
+                        mu = float(re.search(f".mu ({__match_num}).",stds).group(1))
+                        struc_def['coefficient'] = mu * cw
+                elif struc_def['type'] == 'pump':
+                    struc_def['control_side'] = __pump_control[re.search(f".dn ({__match_num}).",stds).group(1)]
+                    stages = re.search(".*\nTBLE\n(.*)<\ntble.",stds).group(1).split('<')
+                    stages = [stage.split() for stage in stages]
+                    struc_def['pump_stages'] = [{'capacity':float(stage[0]),
+                                                  'suction_on':float(stage[1]), 
+                                                  'suction_off':float(stage[2]), 
+                                                  'delivery_on':float(stage[3]), 
+                                                  'delivery_off': float(stage[4])} for stage in stages]
+                        
+                struc_id = next((st_id for st_id,values in structures.items() if values['def_id'] == def_id),None)
+                if struc_id:
+                    result['structures'][struc_id] = {**result['structures'][struc_id],**struc_def}
+                else:
+                    print(f'structure definition {def_id} not linked to structure-id')
+                
+        with path.joinpath('PROFILE.DAT').open() as profile_dat:
+            cross_sections = dict()
+            for line in profile_dat:
+                if re.match("CRSN",line):
+                    xs_id = re.search(".id '(.*)' di.",line).group(1)
+                    cross_sections[xs_id] = re.search(".di '(.*)' rl.",line).group(1)
+            result['cross_sections'] = cross_sections.copy()
+                    
+        with path.joinpath('profile.def').open() as profile_dat:
+            for crds in profile_dat.read().split('crds'):
+                if 'CRDS' in crds:
+                    def_id = re.search(".id '(.*)' nm.",crds).group(1)
+                    xs_type = re.search(f".ty ({__match_num}).",crds).group(1)
+                    crds = crds.replace('\n','')
+                    coords = re.search(r".*TBLE(.*)<tble.",crds).group(1).split('<')
+                    if xs_type == '0':
+                        z = np.array([float(coord.split()[0]) for coord in coords])
+                        w = np.array([float(coord.split()[1]) for coord in coords])
+                        series = pd.Series(data=np.concatenate([np.flip(z), z]),
+                                           index=np.concatenate([np.flip(-w/2), w/2]))
+                    else:
+                        print(f'ERROR: structure type {xs_type} not supported!')
+                        
+                prof_ids = [xs_id for xs_id,xs_def in cross_sections.items() if xs_def == def_id]
+                if prof_ids:
+                    for prof_id in prof_ids:
+                        result['cross_sections'][prof_id] = series.copy()
+                else:
+                    print(f'profile definition {def_id} not linked to profile-id')
+                    
+                   
+    return result
+
+def control(path):
+    ''' function to read controls from a sobek case'''
+    result = dict()
+    with path.joinpath('control.def').open() as control_def:
+        for cntl in control_def.read().split('cntl'):
+            if 'CNTL' in cntl:
+                cntl_def = {}
+                def_id = re.search(".id '(.*)' nm.",cntl).group(1)
+                cntl_def['type'] = __control_types[re.search(f".ct ({__match_num}).",cntl).group(1)]
+                cntl_def['parameter'] = __control_param[re.search(f".ca ({__match_num}).",cntl).group(1)]
+                if cntl_def['type'] == 'PID': 
+                    cntl_def['min_value'] = float(re.search(f".ui ({__match_num}) ",cntl).group(1))
+                    cntl_def['max_value'] = float(re.search(f".ua ({__match_num}) ",cntl).group(1))
+                tble_str = cntl.replace('\n','')
+                if 'TBLE' in tble_str:
+                    cntl_def['table'] = {}
+                    tbl_props = re.findall("PDIN (.*) pdin",tble_str)
+                    if len(tbl_props) > 0:
+                        tbl_props = tbl_props[0].split() 
+                        cntl_def['table']['function'] = tbl_props[0]
+                        cntl_def['table']['use_periodicity'] = bool(int(tbl_props[1]))
+                        if cntl_def['table']['use_periodicity'] == '1':
+                            cntl_def['table']['periodicity'] = tbl_props[2]
+                    tble_list = re.search(r".*TBLE(.*)<tble.",tble_str).group(1).split('<')
+                    date_time = [pd.to_datetime(row.split()[0], format="'%Y/%m/%d;%H:%M:%S'") for row in tble_list]
+                    values = [float(row.split()[1]) for row in tble_list]
+                    cntl_def['table']['data'] = pd.Series(data=values,index=date_time)
+                result[def_id] = cntl_def
                 
     return result
+            
 
 def boundaries(path):
     ''' function to read boundaries from a sobek case'''

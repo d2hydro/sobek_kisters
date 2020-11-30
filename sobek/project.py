@@ -76,9 +76,10 @@ class Case(object):
         self.parameters = Parameters(path,cache) 
         self.results = Results(path,cache) 
         self.boundaries = Boundaries(path,cache)
+        self.control = _get_layer(path, cache,'control')
         
-    def to_kisters(self,name):
-        write.kisters(self,name)
+    def to_kisters(self,name,link_classes=None,extra_params=dict(),initials=False):
+        write.kisters(self,name,link_classes,extra_params,initials)
 
 class Network(object):
     
@@ -93,13 +94,13 @@ class Parameters(object):
     def __init__(self,path,cache):
         result = _get_layer(path,cache,'parameters')
         self.friction = result['friction']
+        self.structures = result['structures']
+        self.cross_sections = result['cross_sections']
 
 class Boundaries(object):
     def __init__(self,path,cache):
         result = _get_layer(path, cache,'boundaries')
         self.flow = result['flow']
-
-#class CrossSections(object):          
                
 class Results(object):
     
@@ -114,6 +115,5 @@ def test():
     case = 'Default'
     project = Project(path)
     project.drop_cache()
-    #print(project1.get_cases())
     return project[case]
     

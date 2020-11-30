@@ -2,3 +2,4 @@
 .eggs/*
 *.pyc
 sobek.egg-info/*
+setup.py.bak

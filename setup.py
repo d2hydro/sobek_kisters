@@ -11,10 +11,5 @@ setup(
     setup_requires=["setuptools_scm"],
     python_requires=">=3.6",
     packages=["sobek"],
-    package_dir={"sobek": "sobek"},
-    zip_safe=False,
-    scripts=[
-             "scripts/viewer.py",
-             "scripts/upload_test.py"],
     keywords="sobek",
 )
