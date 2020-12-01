@@ -33,6 +33,7 @@ rho = 977
 
 #%% write to kisters
 def kisters(sbk_case,name,link_classes,extra_params,prefix='',initials=False):
+    print(prefix)
     if link_classes:
         _translate_link_class = link_classes
     sobek_network = sbk_case.network
@@ -54,7 +55,8 @@ def kisters(sbk_case,name,link_classes,extra_params,prefix='',initials=False):
                 node_type = nodes.Junction
                 
             x,y = row['geometry'].xy[0][0], row['geometry'].xy[1][0]
-            ident = f'{prefix}{row["ID"]}'.replace('-','_')           
+            ident = f'{prefix}{row["ID"]}'.replace('-','_')     
+            print(ident)
             sbk_nodes.append(node_type(
                             uid=ident,
                             display_name=row['ID'],

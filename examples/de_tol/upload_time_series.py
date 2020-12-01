@@ -13,8 +13,13 @@ import geopandas as gpd
 import pandas as pd
 import hkvsobekpy as his
 import re
+from kisters.water.time_series.tsa import TSAStore
 
 pd.options.mode.chained_assignment = None
+prefix = 'a'
+boezempeil = -0.4
+
+store = TSAStore("https://hdsr-detol-tsa.water.kisters.cloud/")
 
 lit_dir = Path(r'c:\SK215003\Tol_inun.lit')
 sbk_case = '20201127 Geaggregeerd Model 0D1D 2013 KNMI Tertiair met Flush GEKALIBREERD'
@@ -38,8 +43,13 @@ flow_bound = {'id':[],
               'time_series':[]}
 
 for lateral, df in laterals_grouper:
-    flow_bound['id'] += [lateral]
-    flow_bound['time_series'] += [sbk_bound_ts_df[df['ID'].values].sum(axis=1)]
-    
-flow_bound_df = pd.DataFrame(flow_bound)
-flow_bound_df.index = flow_bound_df['id']
+    print(lateral)
+    ts = store.create_time_series(f'{prefix}{lateral}/flow.historical')
+    df = pd.DataFrame(sbk_bound_ts_df[df['ID'].values].sum(axis=1), columns = ['value'])
+    ts.write_data_frame(df)
+
+df['value'] = boezempeil
+
+for boundary in sbk_case.boundaries.flow.index:
+    ts = store.create_time_series(f'{prefix}{boundary}/level.historical')
+    ts.write_data_frame(df)

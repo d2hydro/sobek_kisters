@@ -78,8 +78,13 @@ class Case(object):
         self.boundaries = Boundaries(path,cache)
         self.control = _get_layer(path, cache,'control')
         
-    def to_kisters(self,name,link_classes=None,extra_params=dict(),initials=False):
-        write.kisters(self,name,link_classes,extra_params,initials)
+    def to_kisters(self,name,link_classes=None,extra_params=dict(),prefix='',initials=False):
+        write.kisters(self,
+                      name=name,
+                      link_classes=link_classes,
+                      extra_params=extra_params,
+                      prefix=prefix,
+                      initials=initials)
 
 class Network(object):
     

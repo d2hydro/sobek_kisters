@@ -110,4 +110,5 @@ link_classes = {'SBK_PUMP': 'Pump',
 
 rto_network = sbk_case.to_kisters(name = kisters_name,
                                   link_classes = link_classes,
+                                  prefix='a',
                                   initials=False)
