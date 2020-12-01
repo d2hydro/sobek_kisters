@@ -33,14 +33,11 @@ laterals_df = sbk_case.network.objects.loc[sbk_case.network.objects['TYPE'] == '
 links_df = sbk_case.network.links
 laterals_df['TO_NODE'] = laterals_df.apply((lambda x:links_df.loc[x['LINK']]['TO_NODE']),axis=1)
 
-#%%
+#%% lateralen uploaden
 laterals_grouper = laterals_df.groupby('TO_NODE')
 his_file = his.read_his.ReadMetadata(sbk_case.path.joinpath('BNDFLODT.HIS'))
 param = next((par for par in his_file.GetParameters() if re.match('Flow.',par)), None)
 sbk_bound_ts_df = his_file.DataFrame()[param]
-
-flow_bound = {'id':[],
-              'time_series':[]}
 
 for lateral, df in laterals_grouper:
     print(lateral)
@@ -48,6 +45,7 @@ for lateral, df in laterals_grouper:
     df = pd.DataFrame(sbk_bound_ts_df[df['ID'].values].sum(axis=1), columns = ['value'])
     ts.write_data_frame(df)
 
+#%% boezempeil uploaden
 df['value'] = boezempeil
 
 for boundary in sbk_case.boundaries.flow.index:
