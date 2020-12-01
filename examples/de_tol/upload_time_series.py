@@ -15,6 +15,10 @@ import hkvsobekpy as his
 import re
 from kisters.water.time_series.tsa import TSAStore
 
+import nest_asyncio
+
+nest_asyncio.apply()
+
 pd.options.mode.chained_assignment = None
 prefix = 'a'
 boezempeil = -0.4
