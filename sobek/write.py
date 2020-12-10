@@ -5,7 +5,7 @@ Created on Thu Jul 11 14:15:46 2019
 @author: danie
 """
 
-from kisters.network_store.model_library.water import links, nodes
+from kisters.network_store.model_library.water import links, nodes, groups
 from kisters.network_store.client.network import Network
 from kisters.water.rest_client import RESTClient
 from kisters.water.rest_client.auth import OpenIDConnect
@@ -32,8 +32,7 @@ g = 9.81
 rho = 977
 
 #%% write to kisters
-def kisters(sbk_case,name,link_classes,extra_params,prefix='',initials=False):
-    print(prefix)
+def kisters(sbk_case,name,link_classes,extra_params,prefix='',initials=False,rto_groups=None):
     if link_classes:
         _translate_link_class = link_classes
     sobek_network = sbk_case.network
@@ -44,6 +43,7 @@ def kisters(sbk_case,name,link_classes,extra_params,prefix='',initials=False):
     network = Network(name, client, drop_existing=True)
     
     def sbk_nodes(sobek_network):
+        rto_params = dict()
         sbk_nodes = []
         for index, row in sobek_network.nodes.to_crs(epsg='3857').iterrows():
             if row['ID'] in sbk_case.boundaries.flow.index:
@@ -55,16 +55,20 @@ def kisters(sbk_case,name,link_classes,extra_params,prefix='',initials=False):
                 node_type = nodes.Junction
                 
             x,y = row['geometry'].xy[0][0], row['geometry'].xy[1][0]
-            ident = f'{prefix}{row["ID"]}'.replace('-','_')     
-            print(ident)
-            sbk_nodes.append(node_type(
-                            uid=ident,
-                            display_name=row['ID'],
-                            location={"x": x, "y": y, "z": 0.0},
-                            schematic_location={"x": x, "y": y, "z": 0.0},
-                            #initial_level = row['initial_level']
-                            )
-                            )
+            rto_params['location']={"x": x, "y": y, "z": 0.0}
+            rto_params['schematic_location']={"x": x, "y": y, "z": 0.0}
+            rto_params['uid'] = f'{prefix}{row["ID"]}'.replace('-','_')
+            rto_params['display_name'] = row['ID']  
+            
+            if rto_groups:
+                if row['group']:
+                    rto_params['group_uid'] = row['group']
+                else:
+                    rto_params = {key:value for key,value in rto_params.items() if not key == 'group_uid'}
+            
+            
+            sbk_nodes += [node_type(**rto_params)]
+            
         return sbk_nodes
     
     def sbk_links(sobek_network):
@@ -94,7 +98,7 @@ def kisters(sbk_case,name,link_classes,extra_params,prefix='',initials=False):
                 
                 elif link_type in ['Weir', 'TopDownRectangularOrifice']:               
                     rto_params['coefficient'] = structure_params['coefficient']
-                    rto_params['flow_model'] = 'dynamic'
+                    rto_params['flow_model'] = 'free'
                 
                     if link_type == 'Weir':
                         rto_params['crest_width'] = max(structure_params['crest_width'],0.1)
@@ -136,6 +140,10 @@ def kisters(sbk_case,name,link_classes,extra_params,prefix='',initials=False):
                 
             rto_params['uid'] = f'a{link_id.replace("-","_")}'  
             
+            if rto_groups:
+                if row['group']:
+                    rto_params['group_uid'] = row['group']
+            
             #overwrite all that is supplied from extra parameters
             if link_id in extra_params.keys():
                 for key, value in extra_params[link_id].items():
@@ -147,6 +155,21 @@ def kisters(sbk_case,name,link_classes,extra_params,prefix='',initials=False):
                              
         return sbk_links
     
-    network.save_nodes(sbk_nodes(sobek_network))
-    network.save_links(sbk_links(sobek_network))
-    return network
+    def add_rto_groups(rto_groups):
+        res_groups = []
+        for group in rto_groups:
+            params = {key:value for key,value in group.items() if key in ['uid','display_name','location', 'schematic_location']}
+            res_groups += [getattr(groups,group['type'])(**params)]
+        
+        return res_groups
+        
+    rto_nodes = sbk_nodes(sobek_network)
+    rto_links = sbk_links(sobek_network)
+    rto_groups = add_rto_groups(rto_groups)
+    network.save_nodes(rto_nodes)
+    network.save_links(rto_links)
+    network.save_groups(rto_groups)
+    
+    return dict(nodes=rto_nodes,
+                links=rto_links,
+                groups=rto_groups)

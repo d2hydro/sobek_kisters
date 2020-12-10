@@ -11,14 +11,17 @@ from sobek import project
 import geopandas as gpd
 import pandas as pd
 import hkvsobekpy as his
+from shapely.geometry import Point
 import re
+import json
 
 lit_dir = Path(r'c:\SK215003\Tol_inun.lit')
 sbk_case = '20201127 Geaggregeerd Model 0D1D 2013 KNMI Tertiair met Flush GEKALIBREERD'
 kisters_name = 'de-tol'
+data_dir = Path('data')
 
 sbk_project = project.Project(lit_dir)
-sbk_project.drop_cache()
+#sbk_project.drop_cache()
 sbk_cases = sbk_project.get_cases()
 sbk_case = sbk_project[sbk_case]
 
@@ -73,7 +76,7 @@ def get_node_init(row,default=-1.8):
 def get_link_init(row,default=-1.8):
     '''apply-functie voor het toekennen van intiele conditie uit resultaten'''
     if row['ID'] in df.index:
-        return df.loc[row['ID']][6]
+        return df.loc[row['ID']][12]
     else:
         print(f'{row["ID"]} not in initial.dat')
         return default   
@@ -108,7 +111,40 @@ link_classes = {'SBK_PUMP': 'Pump',
                 'SBK_WEIR': 'Weir',
                 'SBK_ORIFICE': 'FlowControlledStructure'}
 
+groups = json.load(open(data_dir.joinpath('groups.json'))
+sbk_case.network.nodes['group'] = None
+sbk_case.network.links['group'] = None
+
+#%%
+for group in groups:
+    #set us/ds nodes to group-id
+    sbk_case.network.nodes.loc[[val for key,val in group.items() if key in ['us_node', 'ds_node']], 'group'] = group['uid']
+    
+    #now find all nodes and links in between
+    ds_found = False
+    us_node = group['us_node']
+    while not ds_found:
+        # set upstream node and link
+        sbk_case.network.links.loc[sbk_case.network.links['FROM_NODE'] == us_node ,'group'] = group['uid']
+        sbk_case.network.nodes.loc[us_node, 'group'] = group['uid']
+        ds_nodes = list(sbk_case.network.links.loc[sbk_case.network.links['FROM_NODE'] == us_node, 'TO_NODE'].unique())
+        if group['ds_node'] in ds_nodes:
+            ds_found = True
+            #sbk_case.network.nodes.loc[ds_nodes[0], 'group'] = group['uid']
+        else:
+            if len(ds_nodes) == 1:
+                us_node = ds_nodes[0]
+            else:
+                print('more than 1 ds node, this goes wrong!')
+#%%            
+    nodes = sbk_case.network.nodes.to_crs(epsg='3857').loc[[val for key,val in group.items() if key in ['us_node', 'ds_node']],'geometry'].values
+    node = Point((nodes[0].x+nodes[1].x)/2, (nodes[0].y+nodes[1].y)/2)
+    group['schematic_location'] = {"x": node.x, "y": node.y, "z": 0.0}
+    group['location'] = {"x": node.x, "y": node.y, "z": 0.0}
+    
+# #%%
 rto_network = sbk_case.to_kisters(name = kisters_name,
                                   link_classes = link_classes,
                                   prefix='a',
-                                  initials=False)
+                                  initials=True,
+                                  rto_groups=groups)

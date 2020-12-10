@@ -43,9 +43,16 @@ his_file = his.read_his.ReadMetadata(sbk_case.path.joinpath('BNDFLODT.HIS'))
 param = next((par for par in his_file.GetParameters() if re.match('Flow.',par)), None)
 sbk_bound_ts_df = his_file.DataFrame()[param]
 
+def get_ts(path):
+    try: 
+        ts = store.get_by_path(path) 
+    except KeyError: 
+        ts = store.create_time_series(path)
+    return ts
+
 for lateral, df in laterals_grouper:
-    print(lateral)
-    ts = store.create_time_series(f'{prefix}{lateral}/flow.historical')
+    path = f'mongo({prefix}{lateral}/flow.historical)'
+    ts = get_ts(path)
     df = pd.DataFrame(sbk_bound_ts_df[df['ID'].values].sum(axis=1), columns = ['value'])
     ts.write_data_frame(df)
 
@@ -53,5 +60,5 @@ for lateral, df in laterals_grouper:
 df['value'] = boezempeil
 
 for boundary in sbk_case.boundaries.flow.index:
-    ts = store.create_time_series(f'{prefix}{boundary}/level.historical')
+    ts = get_ts(f'mongo({prefix}{boundary}/level.historical)')
     ts.write_data_frame(df)
