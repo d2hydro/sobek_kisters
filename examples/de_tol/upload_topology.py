@@ -111,7 +111,7 @@ link_classes = {'SBK_PUMP': 'Pump',
                 'SBK_WEIR': 'Weir',
                 'SBK_ORIFICE': 'FlowControlledStructure'}
 
-groups = json.load(open(data_dir.joinpath('groups.json'))
+groups = json.load(open(data_dir.joinpath('groups.json')))
 sbk_case.network.nodes['group'] = None
 sbk_case.network.links['group'] = None
 
