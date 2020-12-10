@@ -8,6 +8,7 @@ Created on Wed Jul 10 12:38:16 2019
 #%%
 from pathlib import Path
 from sobek import project
+from datetime import timezone, timedelta
 import pandas as pd
 import geopandas as gpd
 import pandas as pd
@@ -54,6 +55,7 @@ for lateral, df in laterals_grouper:
     path = f'mongo({prefix}{lateral}/flow.historical)'
     ts = get_ts(path)
     df = pd.DataFrame(sbk_bound_ts_df[df['ID'].values].sum(axis=1), columns = ['value'])
+    df.index = df.index.tz_localize(timezone(timedelta(hours=1)))
     ts.write_data_frame(df)
 
 #%% boezempeil uploaden
