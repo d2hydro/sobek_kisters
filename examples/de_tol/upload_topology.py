@@ -183,4 +183,5 @@ rto_network = sbk_case.to_kisters(
     prefix="a",
     initials=True,
     rto_groups=groups,
+    hydraulic_routing_model="inertial-wave",
 )

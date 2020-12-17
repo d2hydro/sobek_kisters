@@ -41,6 +41,7 @@ def kisters(
     prefix="",
     initials=False,
     rto_groups=None,
+    hydraulic_routing_model="saint-venant",
 ):
     if link_classes:
         _translate_link_class = link_classes
@@ -174,7 +175,7 @@ def kisters(
                     stations += [station]
 
                 rto_params["hydraulic_routing"] = {
-                    "model": "saint-venant",
+                    "model": hydraulic_routing_model,
                     "roughness_model": "manning",
                     "stations": stations,
                 }
