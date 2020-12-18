@@ -16,13 +16,14 @@ from shapely.geometry import Point
 import re
 import json
 
+#%%
 lit_dir = Path(r'c:\SK215003\Tol_inun.lit')
-sbk_case = '20201127 Geaggregeerd Model 0D1D 2013 KNMI Tertiair met Flush GEKALIBREERD 1POMP'
-kisters_name = 'de-tol'
+sbk_case = '20201217 Geaggregeerd Model 0D1D GEKALIBREERD 1POMP EN FIXES MET OWD'
+kisters_name = 'de-tol-owd'
 data_dir = Path('data')
 
 sbk_project = project.Project(lit_dir)
-#sbk_project.drop_cache()
+sbk_project.drop_cache()
 sbk_cases = sbk_project.get_cases()
 sbk_case = sbk_project[sbk_case]
 
