@@ -291,7 +291,7 @@
 	{
 		"type": "WeirComplex",
 		"uid": "ST0739",
-		"display_name": "stuwen 0739, ST8015",
+		"display_name": "stuwen 0739, 8015",
 		"us_node": "PG0399_PG0400",
 		"ds_node": "PG0399_PG0400_2",
 		"schematic_location": {
@@ -393,7 +393,7 @@
 	{
 		"type": "WeirComplex",
 		"uid": "ST1235",
-		"display_name": "stuwen 1235, ST2910",
+		"display_name": "stuwen 1235, 2910",
 		"us_node": "PG0336_PG0403",
 		"ds_node": "PG0336_PG0403_2",
 		"schematic_location": {
