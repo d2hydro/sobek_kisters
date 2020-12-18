@@ -88,8 +88,10 @@ for loc in sbk_case.results.structures["locations"]:
         df.index = df.index.tz_localize(timezone(timedelta(hours=1)))
         ts.write_data_frame(df)
 
+
 mapping = {
     "Waterlevel mean (m AD)": "level",
+    "Lateral Flow at Node (m3/s)": "flow",
 }
 
 for loc in sbk_case.results.points["locations"]:
