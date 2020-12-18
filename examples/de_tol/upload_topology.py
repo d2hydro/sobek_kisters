@@ -17,7 +17,7 @@ import json
 
 lit_dir = Path(r"/home/jbaayen/Downloads/tol_inun.lit")
 sbk_case = "20201217 Geaggregeerd Model 0D1D GEKALIBREERD 1POMP MINCRESTFIX"
-kisters_name = "de-tol-test"
+kisters_name = "de-tol"
 data_dir = Path("data")
 time_controller_min_value_offset = (
     -0.25
