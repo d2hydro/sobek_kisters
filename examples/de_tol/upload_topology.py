@@ -19,6 +19,9 @@ lit_dir = Path(r"/home/jbaayen/Downloads/tol_inun.lit")
 sbk_case = "20201217 Geaggregeerd Model 0D1D GEKALIBREERD 1POMP MINCRESTFIX"
 kisters_name = "de-tol-test"
 data_dir = Path("data")
+time_controller_min_value_offset = (
+    -0.25
+)  # Subtract 25 cm from min_crest_levels obtained from time controllers
 
 sbk_project = project.Project(lit_dir)
 # sbk_project.drop_cache()
@@ -63,6 +66,15 @@ for structure, parameters in sbk_case.parameters.structures.items():
                 parameters[f"min_{parameter}"] = sbk_case.control[structure][
                     "min_value"
                 ]
+            elif sbk_case.control[structure]["type"] == "time":
+                parameter = sbk_case.control[structure]["parameter"]
+                parameters[f"max_{parameter}"] = sbk_case.control[structure][
+                    "max_value"
+                ]
+                parameters[f"min_{parameter}"] = (
+                    sbk_case.control[structure]["min_value"]
+                    + time_controller_min_value_offset
+                )
 #%%
 # initiele conditie op nodes
 def get_node_init(row, default=-1.8):
