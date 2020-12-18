@@ -463,6 +463,14 @@ def control(path):
                     cntl_def["max_value"] = float(
                         re.search(f".ua ({__match_num}) ", cntl).group(1)
                     )
+                elif cntl_def["type"] == "time":
+                    crest_levels = []
+                    for cntl_line in cntl.splitlines():
+                        if "<" in cntl_line:
+                            crest_levels.append(float(cntl_line.split(" ")[1]))
+                    if len(crest_levels) > 0:
+                        cntl_def["min_value"] = np.min(crest_levels)
+                        cntl_def["max_value"] = np.max(crest_levels)
                 tble_str = cntl.replace("\n", "")
                 if "TBLE" in tble_str:
                     cntl_def["table"] = {}
