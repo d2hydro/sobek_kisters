@@ -16,7 +16,7 @@ import re
 import json
 
 lit_dir = Path(r"/home/jbaayen/Downloads/tol_inun.lit")
-sbk_case = "20201217 Geaggregeerd Model 0D1D GEKALIBREERD 1POMP MINCRESTFIX"
+sbk_case = "20201217 Geaggregeerd Model 0D1D GEKALIBREERD 1POMP EN FIXES MET OWD"
 kisters_name = "de-tol"
 data_dir = Path("data")
 time_controller_min_value_offset = (
@@ -24,7 +24,7 @@ time_controller_min_value_offset = (
 )  # Subtract 25 cm from min_crest_levels obtained from time controllers
 
 sbk_project = project.Project(lit_dir)
-# sbk_project.drop_cache()
+sbk_project.drop_cache()
 sbk_cases = sbk_project.get_cases()
 sbk_case = sbk_project[sbk_case]
 
