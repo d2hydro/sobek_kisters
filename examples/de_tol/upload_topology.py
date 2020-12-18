@@ -9,6 +9,7 @@ Created on Wed Jul 10 12:38:16 2019
 from pathlib import Path
 from sobek import project
 import geopandas as gpd
+import numpy as np
 import pandas as pd
 import hkvsobekpy as his
 from shapely.geometry import Point
@@ -16,7 +17,7 @@ import re
 import json
 
 lit_dir = Path(r'c:\SK215003\Tol_inun.lit')
-sbk_case = '20201127 Geaggregeerd Model 0D1D 2013 KNMI Tertiair met Flush GEKALIBREERD'
+sbk_case = '20201127 Geaggregeerd Model 0D1D 2013 KNMI Tertiair met Flush GEKALIBREERD 1POMP'
 kisters_name = 'de-tol'
 data_dir = Path('data')
 
@@ -79,7 +80,7 @@ def get_link_init(row,default=-1.8):
         return df.loc[row['ID']][12]
     else:
         print(f'{row["ID"]} not in initial.dat')
-        return default   
+        return default      
 
 wl_param = next((param for param in sbk_case.results.points['parameters'] 
                  if re.match('Waterl.', param)), None)
@@ -103,6 +104,8 @@ df = pd.read_csv(sbk_case.path.joinpath('INITIAL.DAT'),
 df.index = [value.replace("'",'') for value in df[2].values]
 
 sbk_case.network.links['initial_level'] = sbk_case.network.links.apply(get_link_init,axis=1) 
+sbk_case.network.links['initial_flow'] = 0
+sbk_case.network.nodes['initial_flow'] = 0
    
 
 
@@ -142,7 +145,7 @@ for group in groups:
     group['schematic_location'] = {"x": node.x, "y": node.y, "z": 0.0}
     group['location'] = {"x": node.x, "y": node.y, "z": 0.0}
     
-# #%%
+#%%
 rto_network = sbk_case.to_kisters(name = kisters_name,
                                   link_classes = link_classes,
                                   prefix='a',

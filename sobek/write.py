@@ -47,12 +47,11 @@ def kisters(sbk_case,name,link_classes,extra_params,prefix='',initials=False,rto
         sbk_nodes = []
         for index, row in sobek_network.nodes.to_crs(epsg='3857').iterrows():
             if row['ID'] in sbk_case.boundaries.flow.index:
-                node_type = getattr(nodes,
-                                    _translate_boundary_class[sbk_case.boundaries.flow.loc['bndPG0394']['TYPE']])
+                node_type = _translate_boundary_class[sbk_case.boundaries.flow.loc[row['ID']]['TYPE']]
             elif row['ID'] in lateral_nodes:
-                node_type = getattr(nodes,'FlowBoundary')
+                node_type = 'FlowBoundary'
             else:
-                node_type = nodes.Junction
+                node_type = 'Junction'
                 
             x,y = row['geometry'].xy[0][0], row['geometry'].xy[1][0]
             rto_params['location']={"x": x, "y": y, "z": 0.0}
@@ -66,8 +65,17 @@ def kisters(sbk_case,name,link_classes,extra_params,prefix='',initials=False,rto
                 else:
                     rto_params = {key:value for key,value in rto_params.items() if not key == 'group_uid'}
             
+            if initials:
+                if node_type in ['Junction', 'FlowBoundary']:
+                    rto_params['initial_level'] = row['initial_level']
+                    if 'initial_flow' in rto_params.keys():
+                        rto_params.pop('initial_flow')
+                elif node_type == 'LevelBoundary':
+                    rto_params['initial_flow'] = row['initial_flow']
+                    if 'initial_level' in rto_params.keys():
+                        rto_params.pop('initial_level')
             
-            sbk_nodes += [node_type(**rto_params)]
+            sbk_nodes += [getattr(nodes,node_type)(**rto_params)]
             
         return sbk_nodes
     
@@ -135,10 +143,20 @@ def kisters(sbk_case,name,link_classes,extra_params,prefix='',initials=False,rto
                 rto_params['hydraulic_routing'] = {"model": "saint-venant",
                                                    "roughness_model": "manning",
                                                    "stations": stations}
+                if initials:
+                    rto_params['hydraulic_routing'].update({"initial_flow":row['initial_flow']})
+                    
                 
                 rto_params['length'] = row['geometry'].length  
                 
-            rto_params['uid'] = f'a{link_id.replace("-","_")}'  
+            rto_params['uid'] = f'a{link_id.replace("-","_")}' 
+            
+            if initials:
+                if link_type in ['FlowControlledStructure', 'Pump']:
+                    rto_params['initial_flow'] = row['initial_flow']
+                elif link_type == 'Weir':
+                    rto_params['initial_crest_level'] = structure_params['crest_level']
+                    print(rto_params)
             
             if rto_groups:
                 if row['group']:
