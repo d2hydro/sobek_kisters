@@ -95,6 +95,8 @@ for loc in sbk_case.results.points["locations"]:
         path = f"mongo({prefix}{loc}/{q_out}.historical)"
         ts = get_ts(path)
         df = sbk_case.results.points["df"][q_in][loc]
+        if isinstance(df, pd.DataFrame):
+            df = df.iloc[:, 0]
         df.index = df.index.tz_localize(timezone(timedelta(hours=1)))
         ts.write_data_frame(df)
 
@@ -108,5 +110,7 @@ for loc in sbk_case.results.links["locations"]:
         path = f"mongo({prefix}{loc_rto}/{q_out}.historical)"
         ts = get_ts(path)
         df = sbk_case.results.links["df"][q_in][loc]
+        if isinstance(df, pd.DataFrame):
+            df = df.iloc[:, 0]
         df.index = df.index.tz_localize(timezone(timedelta(hours=1)))
         ts.write_data_frame(df)
