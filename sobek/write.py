@@ -129,9 +129,8 @@ def kisters(
                     rto_params["flow_model"] = "dynamic"
 
                     if link_type == "Weir":
-                        rto_params["crest_width"] = max(
-                            structure_params["crest_width"], 0.1
-                        )
+                        rto_params["crest_width"] = structure_params["crest_width"]
+                        assert rto_params["crest_width"] > 0
                         for param in ["min_crest_level", "max_crest_level"]:
                             if param in structure_params.keys():
                                 rto_params[param] = structure_params[param]
