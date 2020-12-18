@@ -74,13 +74,15 @@ for boundary in sbk_case.boundaries.flow.index:
 
 # simulatiedata uploaden
 mapping = {
-    # "Discharge mean(m³/s)": "flow",
+    "Discharge mean(m³/s)": "flow",
     "Crest level mean (m AD)": "crest.level",
 }
+
 
 for loc in sbk_case.results.structures["locations"]:
     for q_in, q_out in mapping.items():
         path = f"mongo({prefix}{loc}/{q_out}.historical)"
+        print(path)
         ts = get_ts(path)
         df = sbk_case.results.structures["df"][q_in][loc]
         df.index = df.index.tz_localize(timezone(timedelta(hours=1)))
@@ -93,12 +95,14 @@ mapping = {
 for loc in sbk_case.results.points["locations"]:
     for q_in, q_out in mapping.items():
         path = f"mongo({prefix}{loc}/{q_out}.historical)"
+        print(path)
         ts = get_ts(path)
         df = sbk_case.results.points["df"][q_in][loc]
         if isinstance(df, pd.DataFrame):
             df = df.iloc[:, 0]
         df.index = df.index.tz_localize(timezone(timedelta(hours=1)))
         ts.write_data_frame(df)
+
 
 mapping = {
     "Discharge mean(m³/s)": "flow",
@@ -108,6 +112,7 @@ for loc in sbk_case.results.links["locations"]:
     for q_in, q_out in mapping.items():
         loc_rto = "_".join(loc.split("_")[:-1])
         path = f"mongo({prefix}{loc_rto}/{q_out}.historical)"
+        print(path)
         ts = get_ts(path)
         df = sbk_case.results.links["df"][q_in][loc]
         if isinstance(df, pd.DataFrame):
