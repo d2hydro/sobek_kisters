@@ -27,7 +27,7 @@ boezempeil = -0.4
 store = TSAStore("https://hdsr-detol-tsa.water.kisters.cloud/")
 
 lit_dir = Path(r"/home/jbaayen/Downloads/tol_inun.lit")
-sbk_case = "20201217 Geaggregeerd Model 0D1D GEKALIBREERD 1POMP EN FIXES MET OWD"
+sbk_case = "20201219 Geaggregeerd Model 0D1D OWD KISTERS"
 kisters_name = "de-tol"
 sbk_project = project.Project(lit_dir)
 sbk_cases = sbk_project.get_cases()
