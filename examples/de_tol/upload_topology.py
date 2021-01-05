@@ -16,7 +16,7 @@ import re
 import json
 
 lit_dir = Path(r"/home/jbaayen/Downloads/tol_inun.lit")
-sbk_case = "20201219 Geaggregeerd Model 0D1D OWD KISTERS"
+sbk_case = "20210104 Geaggregeerd Model 0D1D OPTIMALISATIE OWD"
 kisters_name = "de-tol"
 data_dir = Path("data")
 time_controller_min_value_offset = (
