@@ -360,8 +360,8 @@
 		"type": "WeirComplex",
 		"uid": "ST1116",
 		"display_name": "stuw 1116",
-		"us_node": "PG1769_PG2181",
-		"ds_node": "PG1769_PG2181_2",
+		"us_node": "PG1769_PG2181_2",
+		"ds_node": "PG1769_PG2181",
 		"schematic_location": {
 			"x": 551410.5452884018,
 			"y": 6827277.075181762,
@@ -428,8 +428,8 @@
 		"type": "WeirComplex",
 		"uid": "ST0947",
 		"display_name": "stuw 0947",
-		"us_node": "PG1767_PG0394",
-		"ds_node": "PG1767_PG0394_2",
+		"us_node": "PG1767_PG0394_2",
+		"ds_node": "PG1767_PG0394",
 		"schematic_location": {
 			"x": 550672.1984351724,
 			"y": 6827583.326252078,
