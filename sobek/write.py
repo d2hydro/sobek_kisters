@@ -175,7 +175,7 @@ def kisters(
 
                 rto_params["hydraulic_routing"] = {
                     "model": hydraulic_routing_model,
-                    "roughness_model": "manning",
+                    "roughness_model": "chezy",  # TODO
                     "stations": stations,
                 }
 
