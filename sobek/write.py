@@ -156,7 +156,7 @@ def kisters(sbk_case,name,link_classes,extra_params,prefix='',initials=False,rto
                     rto_params['initial_flow'] = row['initial_flow']
                 elif link_type == 'Weir':
                     rto_params['initial_crest_level'] = structure_params['crest_level']
-                    print(rto_params)
+                    
             
             if rto_groups:
                 if row['group']:
