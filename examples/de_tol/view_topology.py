@@ -28,7 +28,7 @@ authentication = OpenIDConnect(
 
 
 client = RESTClient(url=rest_server_url, authentication=authentication)
-network = Network('de-tol', client=client)
+network = Network('de-tol-owd', client=client)
 
 network_viewer = NetworkViewer(network=network)
 
