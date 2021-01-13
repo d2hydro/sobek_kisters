@@ -9,6 +9,7 @@ Created on Wed Jul 10 12:38:16 2019
 from pathlib import Path
 from sobek import project
 import geopandas as gpd
+import numpy as np
 import pandas as pd
 import hkvsobekpy as his
 from shapely.geometry import Point
@@ -96,8 +97,8 @@ def get_link_init(row, default=-1.8):
         return df.loc[row["ID"]][12]
     else:
         print(f'{row["ID"]} not in initial.dat')
-        return default
 
+        return default
 
 wl_param = next(
     (
@@ -133,7 +134,8 @@ df.index = [value.replace("'", "") for value in df[2].values]
 sbk_case.network.links["initial_level"] = sbk_case.network.links.apply(
     get_link_init, axis=1
 )
-
+sbk_case.network.links['initial_flow'] = 0
+sbk_case.network.nodes['initial_flow'] = 0
 
 #%% upload to kisters network store
 link_classes = {

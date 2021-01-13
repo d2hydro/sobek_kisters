@@ -319,12 +319,13 @@ def parameters(path):
     with path.joinpath("friction.dat").open() as friction_dat:
         result["friction"] = dict()
         for line in friction_dat:
-            if re.match("GLFR", line):
-                model = __friction_models[__between(line, "mf", " mt").replace(" ", "")]
-                value = float(__between(line, "mt cp 0", "0 mr").replace(" ", ""))
-                result["friction"]["global"] = {"model": model, "value": value}
-
-    with path.joinpath("struct.dat").open() as struct_dat:
+            if re.match(".*BDFR.*",line):
+                model = __friction_models[__between(line, 'mf',' mt').replace(' ','')]
+                value = float(__between(line, 'mt cp 0','0 mr').replace(' ',''))
+                result['friction']['global'] = {'model':model,
+                                                'value':value}
+    
+    with path.joinpath('struct.dat').open() as struct_dat:
         structures = dict()
         for line in struct_dat:
             if re.match("STRU", line):
