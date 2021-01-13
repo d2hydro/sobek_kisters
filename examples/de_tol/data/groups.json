@@ -19,6 +19,7 @@
 	{
 		"type": "GateComplex",
 		"uid": "I0804",
+		"display_name": "inlaat 0804",
 		"us_node": "bndPG0394",
 		"ds_node": "_PG0394",
 		"schematic_location": {
@@ -69,6 +70,7 @@
 	{
 		"type": "GateComplex",
 		"uid": "I0026",
+		"display_name": "inlaat 0026",
 		"us_node": "bndPG2182",
 		"ds_node": "_PG2182",
 		"schematic_location": {
@@ -102,6 +104,7 @@
 	{
 		"type": "GateComplex",
 		"uid": "I0812",
+		"display_name": "inlaat 0812",
 		"us_node": "bndPG0403",
 		"ds_node": "_PG0403",
 		"schematic_location": {
@@ -135,6 +138,7 @@
 	{
 		"type": "GateComplex",
 		"uid": "IXXXX",
+		"display_name": "inlaat XXXX",
 		"us_node": "bndPG0336",
 		"ds_node": "_PG0336",
 		"schematic_location": {
@@ -151,6 +155,7 @@
 	{
 		"type": "GateComplex",
 		"uid": "I6175",
+		"display_name": "inlaat 6175",
 		"us_node": "bndPG0404",
 		"ds_node": "_PG0404",
 		"schematic_location": {
@@ -167,6 +172,7 @@
 	{
 		"type": "GateComplex",
 		"uid": "I0418_I0024_I1486",
+		"display_name": "inlaten 0418, 0024, 1486",
 		"us_node": "bndPG0834",
 		"ds_node": "_PG0834",
 		"schematic_location": {
@@ -183,6 +189,7 @@
 	{
 		"type": "GateComplex",
 		"uid": "I0424_I0025_I0417",
+		"display_name": "inlaten 0424, 0025, 0417",
 		"us_node": "bndPG0399",
 		"ds_node": "_PG0399",
 		"schematic_location": {
@@ -199,6 +206,7 @@
 	{
 		"type": "GateComplex",
 		"uid": "I1284",
+		"display_name": "inlaat 1284",
 		"us_node": "bndPG0401",
 		"ds_node": "_PG0401",
 		"schematic_location": {
@@ -214,25 +222,8 @@
 	},
 	{
 		"type": "WeirComplex",
-		"uid": "ST0137",
-		"display_name": "aST0137",
-		"us_node": "PG2181_PG0402",
-		"ds_node": "PG2181_PG0402_2",
-		"schematic_location": {
-			"x": 551550.4467341721,
-			"y": 6827680.534536127,
-			"z": 0.0
-		},
-		"location": {
-			"x": 551550.4467341721,
-			"y": 6827680.534536127,
-			"z": 0.0
-		}
-	},
-	{
-		"type": "WeirComplex",
 		"uid": "ST0136",
-		"display_name": "aST0136",
+		"display_name": "stuwen 0136, 0137",
 		"us_node": "PG2181_PG0402",
 		"ds_node": "PG2181_PG0402_2",
 		"schematic_location": {
@@ -249,7 +240,7 @@
 	{
 		"type": "WeirComplex",
 		"uid": "ST0133",
-		"display_name": "aST0133",
+		"display_name": "stuw 0133",
 		"us_node": "PG1767_PG1769",
 		"ds_node": "PG1767_PG1769_2",
 		"schematic_location": {
@@ -266,7 +257,7 @@
 	{
 		"type": "WeirComplex",
 		"uid": "ST2037",
-		"display_name": "aST2037",
+		"display_name": "stuw 2037",
 		"us_node": "PG0400_PG0402",
 		"ds_node": "PG0400_PG0402_2",
 		"schematic_location": {
@@ -283,24 +274,7 @@
 	{
 		"type": "WeirComplex",
 		"uid": "ST0739",
-		"display_name": "aST0739",
-		"us_node": "PG0399_PG0400",
-		"ds_node": "PG0399_PG0400_2",
-		"schematic_location": {
-			"x": 555924.4593971142,
-			"y": 6827650.168022887,
-			"z": 0.0
-		},
-		"location": {
-			"x": 555924.4593971142,
-			"y": 6827650.168022887,
-			"z": 0.0
-		}
-	},
-	{
-		"type": "WeirComplex",
-		"uid": "ST8015",
-		"display_name": "aST8015",
+		"display_name": "stuwen 0739, 8015",
 		"us_node": "PG0399_PG0400",
 		"ds_node": "PG0399_PG0400_2",
 		"schematic_location": {
@@ -317,7 +291,7 @@
 	{
 		"type": "WeirComplex",
 		"uid": "ST2040",
-		"display_name": "aST2040",
+		"display_name": "stuw 2040",
 		"us_node": "PG0834_PG0398",
 		"ds_node": "PG0834_PG0398_2",
 		"schematic_location": {
@@ -334,7 +308,7 @@
 	{
 		"type": "WeirComplex",
 		"uid": "ST0955",
-		"display_name": "aST0955",
+		"display_name": "stuw 0955",
 		"us_node": "PG1768_PG2182",
 		"ds_node": "PG1768_PG2182_2",
 		"schematic_location": {
@@ -350,25 +324,8 @@
 	},
 	{
 		"type": "WeirComplex",
-		"uid": "ST2036",
-		"display_name": "aST2036",
-		"us_node": "PG0397_PG0402",
-		"ds_node": "PG0397_PG0402_2",
-		"schematic_location": {
-			"x": 551984.8778212272,
-			"y": 6827243.827380062,
-			"z": 0.0
-		},
-		"location": {
-			"x": 551984.8778212272,
-			"y": 6827243.827380062,
-			"z": 0.0
-		}
-	},
-	{
-		"type": "WeirComplex",
 		"uid": "ST1118",
-		"display_name": "aST1118",
+		"display_name": "stuw 2036",
 		"us_node": "PG0397_PG0402",
 		"ds_node": "PG0397_PG0402_2",
 		"schematic_location": {
@@ -385,7 +342,7 @@
 	{
 		"type": "WeirComplex",
 		"uid": "ST0134",
-		"display_name": "aST0134",
+		"display_name": "stuw 0134",
 		"us_node": "PG0394_PG0402",
 		"ds_node": "PG0394_PG0402_2",
 		"schematic_location": {
@@ -402,9 +359,9 @@
 	{
 		"type": "WeirComplex",
 		"uid": "ST1116",
-		"display_name": "aST1116",
-		"us_node": "PG1769_PG2181",
-		"ds_node": "PG1769_PG2181_2",
+		"display_name": "stuw 1116",
+		"us_node": "PG1769_PG2181_2",
+		"ds_node": "PG1769_PG2181",
 		"schematic_location": {
 			"x": 551410.5452884018,
 			"y": 6827277.075181762,
@@ -419,7 +376,7 @@
 	{
 		"type": "WeirComplex",
 		"uid": "ST1235",
-		"display_name": "aST1235",
+		"display_name": "stuw 1235",
 		"us_node": "PG0336_PG0403",
 		"ds_node": "PG0336_PG0403_2",
 		"schematic_location": {
@@ -430,81 +387,13 @@
 		"location": {
 			"x": 553123.5694576984,
 			"y": 6823788.722528119,
-			"z": 0.0
-		}
-	},
-	{
-		"type": "WeirComplex",
-		"uid": "ST2910",
-		"display_name": "aST2910",
-		"us_node": "PG0336_PG0403",
-		"ds_node": "PG0336_PG0403_2",
-		"schematic_location": {
-			"x": 553123.5694576984,
-			"y": 6823788.722528119,
-			"z": 0.0
-		},
-		"location": {
-			"x": 553123.5694576984,
-			"y": 6823788.722528119,
-			"z": 0.0
-		}
-	},
-	{
-		"type": "WeirComplex",
-		"uid": "ST0948",
-		"display_name": "aST0948",
-		"us_node": "PG1769_PG0402",
-		"ds_node": "PG1769_PG0402_2",
-		"schematic_location": {
-			"x": 551178.1023109276,
-			"y": 6827828.2216074895,
-			"z": 0.0
-		},
-		"location": {
-			"x": 551178.1023109276,
-			"y": 6827828.2216074895,
-			"z": 0.0
-		}
-	},
-	{
-		"type": "WeirComplex",
-		"uid": "ST0949",
-		"display_name": "aST0949",
-		"us_node": "PG1769_PG0402",
-		"ds_node": "PG1769_PG0402_2",
-		"schematic_location": {
-			"x": 551178.1023109276,
-			"y": 6827828.2216074895,
-			"z": 0.0
-		},
-		"location": {
-			"x": 551178.1023109276,
-			"y": 6827828.2216074895,
 			"z": 0.0
 		}
 	},
 	{
 		"type": "WeirComplex",
 		"uid": "ST1117",
-		"display_name": "aST1117",
-		"us_node": "PG1769_PG0402",
-		"ds_node": "PG1769_PG0402_2",
-		"schematic_location": {
-			"x": 551178.1023109276,
-			"y": 6827828.2216074895,
-			"z": 0.0
-		},
-		"location": {
-			"x": 551178.1023109276,
-			"y": 6827828.2216074895,
-			"z": 0.0
-		}
-	},
-	{
-		"type": "WeirComplex",
-		"uid": "ST0135",
-		"display_name": "aST0135",
+		"display_name": "stuwen 0135, 0948, 0949, 1117",
 		"us_node": "PG1769_PG0402",
 		"ds_node": "PG1769_PG0402_2",
 		"schematic_location": {
@@ -521,7 +410,7 @@
 	{
 		"type": "WeirComplex",
 		"uid": "ST2902",
-		"display_name": "aST2902",
+		"display_name": "stuw 2902",
 		"us_node": "PG0403_PG0397",
 		"ds_node": "PG0403_PG0397_2",
 		"schematic_location": {
@@ -538,9 +427,9 @@
 	{
 		"type": "WeirComplex",
 		"uid": "ST0947",
-		"display_name": "aST0947",
-		"us_node": "PG1767_PG0394",
-		"ds_node": "PG1767_PG0394_2",
+		"display_name": "stuw 0947",
+		"us_node": "PG1767_PG0394_2",
+		"ds_node": "PG1767_PG0394",
 		"schematic_location": {
 			"x": 550672.1984351724,
 			"y": 6827583.326252078,
@@ -555,7 +444,7 @@
 	{
 		"type": "WeirComplex",
 		"uid": "ST6044",
-		"display_name": "aST6044",
+		"display_name": "stuw 6044",
 		"us_node": "PG0398_PG0400",
 		"ds_node": "PG0398_PG0400_2",
 		"schematic_location": {
@@ -571,25 +460,8 @@
 	},
 	{
 		"type": "WeirComplex",
-		"uid": "ST1115",
-		"display_name": "aST1115",
-		"us_node": "PG2182_PG2181",
-		"ds_node": "PG2182_PG2181_2",
-		"schematic_location": {
-			"x": 551435.990429021,
-			"y": 6827001.614396803,
-			"z": 0.0
-		},
-		"location": {
-			"x": 551435.990429021,
-			"y": 6827001.614396803,
-			"z": 0.0
-		}
-	},
-	{
-		"type": "WeirComplex",
 		"uid": "ST0950",
-		"display_name": "aST0950",
+		"display_name": "stuwen 0950, 1115",
 		"us_node": "PG2182_PG2181",
 		"ds_node": "PG2182_PG2181_2",
 		"schematic_location": {
@@ -606,7 +478,7 @@
 	{
 		"type": "WeirComplex",
 		"uid": "ST7241",
-		"display_name": "aST7241",
+		"display_name": "stuw 7241",
 		"us_node": "PG2182_PG1769",
 		"ds_node": "PG2182_PG1769_2",
 		"schematic_location": {
@@ -623,7 +495,7 @@
 	{
 		"type": "WeirComplex",
 		"uid": "ST2909",
-		"display_name": "aST2909",
+		"display_name": "stuw 2909",
 		"us_node": "PG0404_PG0397",
 		"ds_node": "PG0404_PG0397_2",
 		"schematic_location": {
@@ -640,7 +512,7 @@
 	{
 		"type": "WeirComplex",
 		"uid": "KSTYYY",
-		"display_name": "aKSTYYY",
+		"display_name": "stuw YYY",
 		"us_node": "PG0835_PG0403",
 		"ds_node": "PG0835_PG0403_2",
 		"schematic_location": {
@@ -656,18 +528,18 @@
 	},
 	{
 		"type": "WeirComplex",
-		"uid": "shouldST8015",
-		"display_name": "ashouldST8015",
-		"us_node": "PG0399_PG0400",
-		"ds_node": "PG0399_PG0400_2",
+		"uid": "KSTZZZ",
+		"display_name": "stuw ZZZ",
+		"us_node": "PG0401_PG0402",
+		"ds_node": "PG0401_PG0402_2",
 		"schematic_location": {
-			"x": 555924.4593971142,
-			"y": 6827650.168022887,
+			"x": 552844.4835570387,
+			"y": 6829324.825114371,
 			"z": 0.0
 		},
 		"location": {
-			"x": 555924.4593971142,
-			"y": 6827650.168022887,
+			"x": 552844.4835570387,
+			"y": 6829324.825114371,
 			"z": 0.0
 		}
 	}
