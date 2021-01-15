@@ -5,6 +5,7 @@ channels:
   - defaults
 
 dependencies:
+  - bokeh
   - pandas
   - geopandas
   - pip

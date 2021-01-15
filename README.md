@@ -70,6 +70,15 @@ In an activated environment you can now upload your topology by:
 python upload_topology.py
 ```
 
+### view your model in Bokeh
+Assuming you have Bokeh installed in your Python environment you can view your model in the browser by serving Bokeh:
+
+```
+bokeh serve view_topology.py
+```
+
+The model can now be viewed in the browser with url: [http://localhost:5006/view_topology](http://localhost:5006/view_topology)
+
 ### upload time series
 In an activated environment you can upload time series by:
 
