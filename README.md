@@ -3,8 +3,8 @@ Sobek adapter to kisters network store. Including a generic Sobek reader and a w
 
 ## Installation
 
-### Create a RESPIGHI environment
-Use the environment.yml in the repository to create the proper python environment for RESPIGHI in command prompt
+### Create a SOBEK environment
+Use the environment.yml in the repository to create the proper python environment for SOBEK in command prompt
 
 ```
 conda env create -f environment.yml
@@ -13,7 +13,7 @@ conda env create -f environment.yml
 After creating the environment, activate it by running this in the command prompt:
 
 ```
-conda activate respighi
+conda activate sobek
 ```
 
 In the activated environment you install this module by:
@@ -21,6 +21,8 @@ In the activated environment you install this module by:
 ```
 pip install .
 ```
+
+If you wish to upload timeseries to the Kisters TSA Store, request that library and install it the same way. Kisters will supply an url to the TSA Store.
 
 ## Run examples/de_tol
 
@@ -34,6 +36,7 @@ CLIENT_ID = 	  # Kisters client-id
 CLIENT_SECRET =   # Kisters password
 CASE_NAME =       # Sobek case-name
 KISTERS_NAME =    # Name to be used in Kisters network store
+TSA_STORE         # url to the Kisters TSA Store
 ```
 
 ### groups
@@ -66,3 +69,12 @@ In an activated environment you can now upload your topology by:
 ```
 python upload_topology.py
 ```
+
+### upload time series
+In an activated environment you can upload time series by:
+
+```
+python upload_time_series.py
+```
+
+This assuming you have the TSA store installed and an url optained.

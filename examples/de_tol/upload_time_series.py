@@ -24,7 +24,8 @@ from config import(
     KISTERS_NAME,
     DATA_DIR,
     CLIENT_ID,
-    CLIENT_SECRET)
+    CLIENT_SECRET,
+    TSA_URL)
 
 nest_asyncio.apply()
 
@@ -32,7 +33,7 @@ pd.options.mode.chained_assignment = None
 prefix = "a"
 boezempeil = -0.4
 
-store = TSAStore("https://hdsr-detol-tsa.water.kisters.cloud/")
+store = TSAStore(TSA_URL)
 
 lit_dir = LIT_DIR
 sbk_case = CASE_NAME
