@@ -1,0 +1,20 @@
+name: sobek
+
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - pandas
+  - geopandas
+  - pip
+  - shapely
+  - requests
+  - matplotlib
+  - scipy
+  - tqdm
+  - fire
+  - pip:
+    - kisters.network-store.model-library.water==0.2.12
+    - hkvsobekpy
+    - kisters.network-store.client.network

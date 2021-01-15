@@ -1,0 +1,6 @@
+
+.eggs/*
+*.pyc
+sobek.egg-info/*
+setup.py.bak
+examples/de_tol/config.py

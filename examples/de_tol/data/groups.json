@@ -1,0 +1,684 @@
+[
+	{
+		"type": "PumpingStation",
+		"uid": "G2901",
+		"display_name": "gemaal De Tol",
+		"us_node": "PG0402_",
+		"ds_node": "bndPG0402",
+		"schematic_location": {
+			"x": 553613.57920871,
+			"y": 6830004.305543325,
+			"z": 0.0
+		},
+		"location": {
+			"x": 553613.57920871,
+			"y": 6830004.305543325,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "GateComplex",
+		"uid": "I0804",
+		"display_name": "inlaat 0804",
+		"us_node": "bndPG0394",
+		"ds_node": "_PG0394",
+		"schematic_location": {
+			"x": 550162.0704695988,
+			"y": 6828001.7723825835,
+			"z": 0.0
+		},
+		"location": {
+			"x": 550162.0704695988,
+			"y": 6828001.7723825835,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "GateComplex",
+		"uid": "I2075",
+		"display_name": "inlaat Bijleveld",
+		"us_node": "bndPG1767",
+		"ds_node": "_PG1767",
+		"schematic_location": {
+			"x": 550597.4242402818,
+			"y": 6827359.357412563,
+			"z": 0.0
+		},
+		"location": {
+			"x": 550597.4242402818,
+			"y": 6827359.357412563,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "GateComplex",
+		"uid": "I0027",
+		"display_name": "inlaat Korte Kerkweg",
+		"us_node": "bndPG1768",
+		"ds_node": "_PG1768",
+		"schematic_location": {
+			"x": 550852.8149821456,
+			"y": 6826962.247053682,
+			"z": 0.0
+		},
+		"location": {
+			"x": 550852.8149821456,
+			"y": 6826962.247053682,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "GateComplex",
+		"uid": "I0026",
+		"display_name": "inlaat 0026",
+		"us_node": "bndPG2182",
+		"ds_node": "_PG2182",
+		"schematic_location": {
+			"x": 551041.6963239202,
+			"y": 6826701.874614226,
+			"z": 0.0
+		},
+		"location": {
+			"x": 551041.6963239202,
+			"y": 6826701.874614226,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "GateComplex",
+		"uid": "I0982",
+		"display_name": "inlaat Sportweg",
+		"us_node": "bndPG2181",
+		"ds_node": "_PG2181",
+		"schematic_location": {
+			"x": 551072.3924051961,
+			"y": 6826655.0792460125,
+			"z": 0.0
+		},
+		"location": {
+			"x": 551072.3924051961,
+			"y": 6826655.0792460125,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "GateComplex",
+		"uid": "I0812",
+		"display_name": "inlaat 0812",
+		"us_node": "bndPG0403",
+		"ds_node": "_PG0403",
+		"schematic_location": {
+			"x": 551926.020506409,
+			"y": 6825276.475702856,
+			"z": 0.0
+		},
+		"location": {
+			"x": 551926.020506409,
+			"y": 6825276.475702856,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "GateComplex",
+		"uid": "I0809_I0029",
+		"display_name": "inlaat De Krom",
+		"us_node": "bndPG0835",
+		"ds_node": "_PG0835",
+		"schematic_location": {
+			"x": 552206.6591165513,
+			"y": 6824401.745131746,
+			"z": 0.0
+		},
+		"location": {
+			"x": 552206.6591165513,
+			"y": 6824401.745131746,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "GateComplex",
+		"uid": "IXXXX",
+		"display_name": "inlaat XXXX",
+		"us_node": "bndPG0336",
+		"ds_node": "_PG0336",
+		"schematic_location": {
+			"x": 553612.0566524599,
+			"y": 6823571.414527869,
+			"z": 0.0
+		},
+		"location": {
+			"x": 553612.0566524599,
+			"y": 6823571.414527869,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "GateComplex",
+		"uid": "I6175",
+		"display_name": "inlaat 6175",
+		"us_node": "bndPG0404",
+		"ds_node": "_PG0404",
+		"schematic_location": {
+			"x": 555014.4329261808,
+			"y": 6824364.903418396,
+			"z": 0.0
+		},
+		"location": {
+			"x": 555014.4329261808,
+			"y": 6824364.903418396,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "GateComplex",
+		"uid": "I0418_I0024_I1486",
+		"display_name": "inlaten 0418, 0024, 1486",
+		"us_node": "bndPG0834",
+		"ds_node": "_PG0834",
+		"schematic_location": {
+			"x": 556841.3747345961,
+			"y": 6825798.432196058,
+			"z": 0.0
+		},
+		"location": {
+			"x": 556841.3747345961,
+			"y": 6825798.432196058,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "GateComplex",
+		"uid": "I0424_I0025_I0417",
+		"display_name": "inlaten 0424, 0025, 0417",
+		"us_node": "bndPG0399",
+		"ds_node": "_PG0399",
+		"schematic_location": {
+			"x": 557564.9171341737,
+			"y": 6826271.913037321,
+			"z": 0.0
+		},
+		"location": {
+			"x": 557564.9171341737,
+			"y": 6826271.913037321,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "GateComplex",
+		"uid": "I1284",
+		"display_name": "inlaat 1284",
+		"us_node": "bndPG0401",
+		"ds_node": "_PG0401",
+		"schematic_location": {
+			"x": 554966.2319362639,
+			"y": 6830824.121831056,
+			"z": 0.0
+		},
+		"location": {
+			"x": 554966.2319362639,
+			"y": 6830824.121831056,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "WeirComplex",
+
+		"uid": "ST0137",
+		"display_name": "aST0137",
+		"us_node": "PG2181_PG0402",
+		"ds_node": "PG2181_PG0402_2",
+		"schematic_location": {
+			"x": 551550.4467341721,
+			"y": 6827680.534536127,
+			"z": 0.0
+		},
+		"location": {
+			"x": 551550.4467341721,
+			"y": 6827680.534536127,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "WeirComplex",
+		"uid": "ST0136",
+		"display_name": "aST0136",
+		"us_node": "PG2181_PG0402",
+		"ds_node": "PG2181_PG0402_2",
+		"schematic_location": {
+			"x": 551550.4467341721,
+			"y": 6827680.534536127,
+			"z": 0.0
+		},
+		"location": {
+			"x": 551550.4467341721,
+			"y": 6827680.534536127,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "WeirComplex",
+		"uid": "ST0133",
+		"display_name": "aST0133",
+		"us_node": "PG1767_PG1769",
+		"ds_node": "PG1767_PG1769_2",
+		"schematic_location": {
+			"x": 550908.603053965,
+			"y": 6827444.55806885,
+			"z": 0.0
+		},
+		"location": {
+			"x": 550908.603053965,
+			"y": 6827444.55806885,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "WeirComplex",
+		"uid": "ST2037",
+		"display_name": "aST2037",
+		"us_node": "PG0400_PG0402",
+		"ds_node": "PG0400_PG0402_2",
+		"schematic_location": {
+			"x": 552931.0169666338,
+			"y": 6828307.894848594,
+			"z": 0.0
+		},
+		"location": {
+			"x": 552931.0169666338,
+			"y": 6828307.894848594,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "WeirComplex",
+		"uid": "ST0739",
+		"display_name": "aST0739",
+		"us_node": "PG0399_PG0400",
+		"ds_node": "PG0399_PG0400_2",
+		"schematic_location": {
+			"x": 555924.4593971142,
+			"y": 6827650.168022887,
+			"z": 0.0
+		},
+		"location": {
+			"x": 555924.4593971142,
+			"y": 6827650.168022887,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "WeirComplex",
+		"uid": "ST8015",
+		"display_name": "aST8015",
+		"us_node": "PG0399_PG0400",
+		"ds_node": "PG0399_PG0400_2",
+		"schematic_location": {
+			"x": 555924.4593971142,
+			"y": 6827650.168022887,
+			"z": 0.0
+		},
+		"location": {
+			"x": 555924.4593971142,
+			"y": 6827650.168022887,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "WeirComplex",
+		"uid": "ST2040",
+		"display_name": "ST2040",
+		"us_node": "PG0834_PG0398",
+		"ds_node": "PG0834_PG0398_2",
+		"schematic_location": {
+			"x": 555587.1911739688,
+			"y": 6825658.453070061,
+			"z": 0.0
+		},
+		"location": {
+			"x": 555587.1911739688,
+			"y": 6825658.453070061,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "WeirComplex",
+		"uid": "ST0955",
+
+		"display_name": "ST0955",
+		"us_node": "PG1768_PG2182",
+		"ds_node": "PG1768_PG2182_2",
+		"schematic_location": {
+			"x": 550990.1135021888,
+			"y": 6826937.7874430185,
+			"z": 0.0
+		},
+		"location": {
+			"x": 550990.1135021888,
+			"y": 6826937.7874430185,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "WeirComplex",
+		"uid": "ST2036",
+		"display_name": "ST2036",
+		"us_node": "PG0397_PG0402",
+		"ds_node": "PG0397_PG0402_2",
+		"schematic_location": {
+			"x": 551984.8778212272,
+			"y": 6827243.827380062,
+			"z": 0.0
+		},
+		"location": {
+			"x": 551984.8778212272,
+			"y": 6827243.827380062,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "WeirComplex",
+		"uid": "ST1118",
+		"display_name": "ST1118",
+		"us_node": "PG0397_PG0402",
+		"ds_node": "PG0397_PG0402_2",
+		"schematic_location": {
+			"x": 551984.8778212272,
+			"y": 6827243.827380062,
+			"z": 0.0
+		},
+		"location": {
+			"x": 551984.8778212272,
+			"y": 6827243.827380062,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "WeirComplex",
+		"uid": "ST0134",
+		"display_name": "ST0134",
+		"us_node": "PG0394_PG0402",
+		"ds_node": "PG0394_PG0402_2",
+		"schematic_location": {
+			"x": 550923.9113150935,
+			"y": 6827977.3397746915,
+			"z": 0.0
+		},
+		"location": {
+			"x": 550923.9113150935,
+			"y": 6827977.3397746915,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "WeirComplex",
+		"uid": "ST1116",
+		"display_name": "ST1116",
+		"us_node": "PG1769_PG2181_2",
+		"ds_node": "PG1769_PG2181",
+		"schematic_location": {
+			"x": 551410.5452884018,
+			"y": 6827277.075181762,
+			"z": 0.0
+		},
+		"location": {
+			"x": 551410.5452884018,
+			"y": 6827277.075181762,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "WeirComplex",
+		"uid": "ST1235",
+		"display_name": "ST1235",
+		"us_node": "PG0336_PG0403",
+		"ds_node": "PG0336_PG0403_2",
+		"schematic_location": {
+			"x": 553123.5694576984,
+			"y": 6823788.722528119,
+			"z": 0.0
+		},
+		"location": {
+			"x": 553123.5694576984,
+			"y": 6823788.722528119,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "WeirComplex",
+		"uid": "ST2910",
+		"display_name": "ST2910",
+		"us_node": "PG0336_PG0403",
+		"ds_node": "PG0336_PG0403_2",
+		"schematic_location": {
+			"x": 553123.5694576984,
+			"y": 6823788.722528119,
+			"z": 0.0
+		},
+		"location": {
+			"x": 553123.5694576984,
+			"y": 6823788.722528119,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "WeirComplex",
+		"uid": "ST0948",
+		"display_name": "ST0948",
+		"us_node": "PG1769_PG0402",
+		"ds_node": "PG1769_PG0402_2",
+		"schematic_location": {
+			"x": 551178.1023109276,
+			"y": 6827828.2216074895,
+			"z": 0.0
+		},
+		"location": {
+			"x": 551178.1023109276,
+			"y": 6827828.2216074895,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "WeirComplex",
+		"uid": "ST0949",
+		"display_name": "ST0949",
+		"us_node": "PG1769_PG0402",
+		"ds_node": "PG1769_PG0402_2",
+		"schematic_location": {
+			"x": 551178.1023109276,
+			"y": 6827828.2216074895,
+			"z": 0.0
+		},
+		"location": {
+			"x": 551178.1023109276,
+			"y": 6827828.2216074895,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "WeirComplex",
+		"uid": "ST1117",
+		"display_name": "ST1117",
+		"us_node": "PG1769_PG0402",
+		"ds_node": "PG1769_PG0402_2",
+		"schematic_location": {
+			"x": 551178.1023109276,
+			"y": 6827828.2216074895,
+			"z": 0.0
+		},
+		"location": {
+			"x": 551178.1023109276,
+			"y": 6827828.2216074895,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "WeirComplex",
+		"uid": "ST0135",
+		"display_name": "ST0135",
+		"us_node": "PG1769_PG0402",
+		"ds_node": "PG1769_PG0402_2",
+		"schematic_location": {
+			"x": 551178.1023109276,
+			"y": 6827828.2216074895,
+			"z": 0.0
+		},
+		"location": {
+			"x": 551178.1023109276,
+			"y": 6827828.2216074895,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "WeirComplex",
+		"uid": "ST2902",
+		"display_name": "ST2902",
+		"us_node": "PG0403_PG0397",
+		"ds_node": "PG0403_PG0397_2",
+		"schematic_location": {
+			"x": 552861.0554360389,
+			"y": 6825428.003073025,
+			"z": 0.0
+		},
+		"location": {
+			"x": 552861.0554360389,
+			"y": 6825428.003073025,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "WeirComplex",
+		"uid": "ST0947",
+		"display_name": "ST0947",
+		"us_node": "PG1767_PG0394_2",
+		"ds_node": "PG1767_PG0394",
+		"schematic_location": {
+			"x": 550672.1984351724,
+			"y": 6827583.326252078,
+			"z": 0.0
+		},
+		"location": {
+			"x": 550672.1984351724,
+			"y": 6827583.326252078,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "WeirComplex",
+		"uid": "ST6044",
+		"display_name": "ST6044",
+		"us_node": "PG0398_PG0400",
+		"ds_node": "PG0398_PG0400_2",
+		"schematic_location": {
+			"x": 554937.3377346674,
+			"y": 6827145.085857029,
+			"z": 0.0
+		},
+		"location": {
+			"x": 554937.3377346674,
+			"y": 6827145.085857029,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "WeirComplex",
+		"uid": "ST1115",
+		"display_name": "ST1115",
+		"us_node": "PG2182_PG2181",
+		"ds_node": "PG2182_PG2181_2",
+		"schematic_location": {
+			"x": 551435.990429021,
+			"y": 6827001.614396803,
+			"z": 0.0
+		},
+		"location": {
+			"x": 551435.990429021,
+			"y": 6827001.614396803,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "WeirComplex",
+		"uid": "ST0950",
+		"display_name": "ST0950",
+		"us_node": "PG2182_PG2181",
+		"ds_node": "PG2182_PG2181_2",
+		"schematic_location": {
+			"x": 551435.990429021,
+			"y": 6827001.614396803,
+			"z": 0.0
+		},
+		"location": {
+			"x": 551435.990429021,
+			"y": 6827001.614396803,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "WeirComplex",
+		"uid": "ST7241",
+		"display_name": "ST7241",
+		"us_node": "PG2182_PG1769",
+		"ds_node": "PG2182_PG1769_2",
+		"schematic_location": {
+			"x": 551077.7070344918,
+			"y": 6827144.176430132,
+			"z": 0.0
+		},
+		"location": {
+			"x": 551077.7070344918,
+			"y": 6827144.176430132,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "WeirComplex",
+		"uid": "ST2909",
+		"display_name": "ST2909",
+		"us_node": "PG0404_PG0397",
+		"ds_node": "PG0404_PG0397_2",
+		"schematic_location": {
+			"x": 553554.066276344,
+			"y": 6825552.806823885,
+			"z": 0.0
+		},
+		"location": {
+			"x": 553554.066276344,
+			"y": 6825552.806823885,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "WeirComplex",
+		"uid": "KSTYYY",
+		"display_name": "KSTYYY",
+		"us_node": "PG0835_PG0403",
+		"ds_node": "PG0835_PG0403_2",
+		"schematic_location": {
+			"x": 552530.5768176311,
+			"y": 6824719.028879256,
+			"z": 0.0
+		},
+		"location": {
+			"x": 552530.5768176311,
+			"y": 6824719.028879256,
+			"z": 0.0
+		}
+	},
+	{
+		"type": "WeirComplex",
+		"uid": "shouldST8015",
+		"display_name": "shouldST8015",
+		"us_node": "PG0399_PG0400",
+		"ds_node": "PG0399_PG0400_2",
+		"schematic_location": {
+			"x": 555924.4593971142,
+			"y": 6827650.168022887,
+			"z": 0.0
+		},
+		"location": {
+			"x": 555924.4593971142,
+			"y": 6827650.168022887,
+			"z": 0.0
+		}
+	}
+]
