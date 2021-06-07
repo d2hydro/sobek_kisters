@@ -59,7 +59,9 @@ def kisters(
     sobek_cross_sections = sbk_case.network.objects.loc[
         sbk_case.network.objects["TYPE"] == "SBK_PROFILE"
     ]
-    network = Network(name, client, drop_existing=True)
+    network = Network(name, client)
+    # remove all network elements (if any), including historical edits
+    network.drop(purge=True)
 
     def sbk_nodes(sobek_network):
         rto_params = dict()
